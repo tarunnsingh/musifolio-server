@@ -36,9 +36,13 @@
             </div>
             <div class="card-body">
               <% if (file.isImage) { %>
-              <img src="image/<%= file.filename %>" width="250" alt="" class="img-responsive" />
+              <img src="/api/songs/<%= file.filename %>" width="250" alt="" class="img-responsive" />
               <%} else if (file.isSong){ %>
-              <p><% file.filename %></p>
+              <p></p>
+              <audio controls="controls">
+                <source src="/api/songs/<%= file.filename %>" type="audio/mpeg" />
+                Your browser does not support the HTML5 Audio element.
+              </audio>
               <% } %>
             </div>
             <div class="card-footer">
