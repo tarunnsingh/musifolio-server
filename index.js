@@ -2,10 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const { keys } = require("./credentials");
 const Grid = require("gridfs-stream");
 const GridFsStorage = require("multer-gridfs-storage");
 const multer = require("multer");
+const crypto = require("crypto");
+const path = require("path");
+const { keys } = require("./credentials");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -14,6 +16,8 @@ mongoose.connect(keys.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+
 const conn = mongoose.connection;
 let gfs = ''
 conn.on("connected", () => {
